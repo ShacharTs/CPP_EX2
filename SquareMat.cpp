@@ -21,6 +21,7 @@ namespace Matrix {
         }
     }
 
+
     SquareMatrix::~SquareMatrix() {
         delete[] matrix;
     }

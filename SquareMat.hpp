@@ -1,7 +1,8 @@
 #ifndef SQUAREMAT_HPP
 #define SQUAREMAT_HPP
-
 #include <iostream>
+
+
 
 namespace Matrix {
     class SquareMatrix {
@@ -12,6 +13,13 @@ namespace Matrix {
     public:
         // Class
         explicit SquareMatrix(int size);
+
+        template<typename T>
+        explicit SquareMatrix(T* matrix, int size) {
+            std::cout << "Need to search how to make sure handle errors" <<std::endl;
+        }
+
+
         ~SquareMatrix();
 
         // Basic arithmetic operators
@@ -67,6 +75,7 @@ namespace Matrix {
 
 
     };
+
 
 }
 
