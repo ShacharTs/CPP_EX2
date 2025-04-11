@@ -4,7 +4,7 @@
 using namespace std;
 
 
-//** To access a slot in 2d array is  matrix[i * size + j]
+//** To access a slot in 2d array is  matrix[i * matrix.size + j]
 
 
 namespace Matrix {
