@@ -62,8 +62,10 @@ namespace Matrix {
         bool operator>=(const SquareMatrix& other) const;
 
         // Friend functions
-        friend SquareMatrix operator*(double scalar, const SquareMatrix& mat);
-        friend std::ostream& operator<<(std::ostream& out, const SquareMatrix& mat);
+        friend SquareMatrix operator*(double scalar, const SquareMatrix& mat); // scalar * matrix
+        friend std::ostream& operator<<(std::ostream& out, const SquareMatrix& mat); // cout << matrix  . Done
+
+
     };
 
 }
