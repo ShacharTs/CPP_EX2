@@ -8,45 +8,120 @@ using namespace std;
 
 
 namespace Matrix {
-    SquareMatrix::SquareMatrix(const int size) {
-        this->size = size;
-        this->matrix = new float [size * size]();
-
-        for (int i = 0; i < this->size; ++i) {
-            cout << "Enter row " << i << " values (" << this->size << " numbers): ";
-            for (int j = 0; j < this->size; ++j) {
-                cin >> matrix[i * this->size + j];
-            }
-            cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
+    SquareMatrix::SquareMatrix(const float sqMatrix[], int dimensionSize) : dimensionSize(dimensionSize) {
+        if (sqMatrix == nullptr) {
+            throw invalid_argument("Matrix array can not be null");
         }
-    }
-
-    SquareMatrix::SquareMatrix(const float sqMatrix[],int size) :size(size) {
-        matrix = new float[size * size];
-        for (int i = 0; i < size * size; i++) {
+        matrix = new float[dimensionSize * dimensionSize];
+        for (int i = 0; i < dimensionSize * dimensionSize; i++) {
             matrix[i] = sqMatrix[i];
         }
     }
 
+    /**
+     * a private helper constructor for all the operators
+     * @param dimensionSize .
+     */
+    SquareMatrix::SquareMatrix(const int dimensionSize, bool) : dimensionSize(dimensionSize) {
+        matrix = new float[dimensionSize * dimensionSize]();
+    }
 
+    /**
+     * Check if both matrix, have the same dimension size
+     * @param other
+     * @return
+     */
+    void SquareMatrix::checkdimensionSize(const SquareMatrix &other) const {
+        if (this->dimensionSize != other.dimensionSize) {
+            throw invalid_argument("Matrix dimension size must be equals");
+        }
+    }
+
+
+    /**
+     * Destructor
+     */
     SquareMatrix::~SquareMatrix() {
         delete[] matrix;
     }
 
+    // Copy constructor
+    SquareMatrix::SquareMatrix(const SquareMatrix &other)
+        : dimensionSize(other.dimensionSize) {
+        matrix = new float[dimensionSize * dimensionSize];
+        for (int i = 0; i < dimensionSize * dimensionSize; ++i) {
+            matrix[i] = other.matrix[i];
+        }
+    }
+
+    // Copy assignment operator
+    SquareMatrix &SquareMatrix::operator=(const SquareMatrix &other) {
+        if (this == &other) {
+            return *this; // self-assignment guard
+        }
+        delete[] matrix;
+
+        dimensionSize = other.dimensionSize;
+        matrix = new float[dimensionSize * dimensionSize];
+        for (int i = 0; i < dimensionSize * dimensionSize; ++i) {
+            matrix[i] = other.matrix[i];
+        }
+        return *this;
+    }
 
 
-    std::ostream& operator<<(std::ostream& out, const SquareMatrix& mat) {
-        cout << "Printing matrix" <<endl;
-        for (int i = 0; i < mat.size; ++i) {
-            for (int j = 0; j < mat.size; ++j) {
-                out << mat.matrix[i * mat.size + j] << " ";
+    /**
+     * Printing the matrix
+     * @return
+     */
+    std::ostream &operator<<(std::ostream &out, const SquareMatrix &mat) {
+        cout << "Printing matrix" << endl;
+        for (int i = 0; i < mat.dimensionSize; ++i) {
+            for (int j = 0; j < mat.dimensionSize; ++j) {
+                out << mat.matrix[i * mat.dimensionSize + j] << " ";
             }
             out << '\n';
         }
         return out;
     }
 
+    /**
+     * =============================================================================
+     *                              Operator Behavior Note
+     * -----------------------------------------------------------------------------
+     *          All the operators work in the same way:
+     *          this->matrix   => the left-hand side argument (lhs)
+     *          other.matrix   => the right-hand side argument (rhs)
+     * -----------------------------------------------------------------------------
+     */
+
+
+    float* SquareMatrix::operator[](int row) {
+        return &matrix[row * dimensionSize];
+    }
+
+    const float* SquareMatrix::operator[](int row) const {
+        return &matrix[row * dimensionSize];
+    }
 
 
 
+    SquareMatrix SquareMatrix::operator+(const SquareMatrix &other) const {
+        checkdimensionSize(other);
+        SquareMatrix temp(other.dimensionSize, true);
+        for (int i = 0; i < dimensionSize * dimensionSize; i++) {
+            temp.matrix[i] = this->matrix[i] + other.matrix[i];
+        }
+        return temp;
+    }
+
+
+    SquareMatrix SquareMatrix::operator-(const SquareMatrix &other) const {
+        checkdimensionSize(other);
+        SquareMatrix temp(other.dimensionSize, true);
+        for (int i = 0; i < dimensionSize * dimensionSize; i++) {
+            temp.matrix[i] = this->matrix[i] - other.matrix[i];
+        }
+        return temp;
+    }
 }

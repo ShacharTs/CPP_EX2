@@ -7,17 +7,21 @@
 namespace Matrix {
     class SquareMatrix {
     private:
-        int size;
+        int dimensionSize;
         float *matrix;
 
+        SquareMatrix(int dimensionSize, bool allocateOnly);
+        void checkdimensionSize(const SquareMatrix &other) const;
+
     public:
-        // Class
-        explicit SquareMatrix(int size);
+        // Class constractor
+        //explicit SquareMatrix(int size);
+        explicit SquareMatrix(const float matrix[], int dimensionSize);
 
+        SquareMatrix(const SquareMatrix& other); // copy constractor
+        SquareMatrix& operator=(const SquareMatrix& other); // assignment operator
 
-        explicit SquareMatrix(const float matrix[], int size);
-
-
+        // Class destructor
         ~SquareMatrix();
 
         // Basic arithmetic operators
@@ -53,11 +57,12 @@ namespace Matrix {
 
         // Transpose and determinant
         SquareMatrix operator~() const;  // Transpose
-        double operator!() const;        // Determinant
+        float operator!() const;        // Determinant
 
         // Element access
-        double* operator[](int row);              // Modify
-        const double* operator[](int row) const;  // Read-only
+        float* operator[](int row);              // for writing
+        const float* operator[](int row) const;  // for reading
+
 
         // Comparisons (based on sum of elements)
         bool operator==(const SquareMatrix& other) const;
@@ -68,7 +73,7 @@ namespace Matrix {
         bool operator>=(const SquareMatrix& other) const;
 
         // Friend functions
-        friend SquareMatrix operator*(double scalar, const SquareMatrix& mat); // scalar * matrix
+        friend SquareMatrix operator*(float scalar, const SquareMatrix& mat); // scalar * matrix
         friend std::ostream& operator<<(std::ostream& out, const SquareMatrix& mat); // cout << matrix  . Done
 
 

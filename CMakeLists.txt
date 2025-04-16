@@ -8,7 +8,7 @@ add_library(SquareMatrix STATIC
 
 # Then create the executable
 add_executable(CPP_EX2
-        main.cpp
+        test.cpp
 )
 
 # Link the library to the executable
