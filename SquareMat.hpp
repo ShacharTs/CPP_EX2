@@ -80,8 +80,8 @@ namespace Matrix {
         SquareMatrix operator--(int); // Postfix --
 
         // Transpose and determinant
-        SquareMatrix operator~() const; // Transpose
-        float operator!() const; // Determinant
+        SquareMatrix &operator~() ; // Transpose
+        float operator!(); // Determinant
 
         // Element access
         float *operator[](int row); // for writing

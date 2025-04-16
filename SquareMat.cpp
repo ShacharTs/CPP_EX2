@@ -254,6 +254,17 @@ namespace Matrix {
         return *this;
     }
 
+    SquareMatrix &SquareMatrix::operator~()  {
+        for (int i= 0; i < this->getDimension();i++) {
+            for (int j = i+1; j <this->getDimension();j++) {
+                const float temp1 = this->matrix[i * getDimension() + j];
+                const float temp2 = this->matrix[j * getDimension() + i];
+                this->matrix[i * getDimension() + j] = temp2;
+                this->matrix[j * getDimension() + i] = temp1;
+            }
+        }
+        return *this;
+    }
 
 
     bool SquareMatrix::operator==(const SquareMatrix &other) const {
@@ -278,6 +289,9 @@ namespace Matrix {
     bool SquareMatrix::operator>=(const SquareMatrix &other) const {
         return Matrix::countTotal(*this) >= Matrix::countTotal(other);
     }
+
+
+
 
 
 

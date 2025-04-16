@@ -8,7 +8,6 @@
         SquareMatrix operator--(int); // Postfix --
 
         // Transpose and determinant
-        SquareMatrix operator~() const; // Transpose
         float operator!() const; // Determinant
 
 

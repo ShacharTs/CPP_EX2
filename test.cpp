@@ -439,3 +439,23 @@ TEST_CASE("operator >= ") {
     CHECK(c >= a);
     cout << "========================================\n";
 }
+
+TEST_CASE("operator ~ ") {
+    cout << "\n=== Running TEST_CASE: operator ~ ===\n";
+    SquareMatrix a = createMatrix();
+    float arr[] = {1,4,7,2,5,8,3,6,9};
+    SquareMatrix b (arr);
+    ~a;
+    for (int i = 0; i < a.getDimension(); i++) {
+        for (int j =0; j < a.getDimension();j++) {
+            CHECK(a[i][j] == doctest::Approx(b[i][j]));
+        }
+
+
+    }
+
+
+    cout << "========================================\n";
+}
+
+
