@@ -8,16 +8,14 @@ namespace Matrix {
     class SquareMatrix {
     private:
         int size;
-        double *matrix;
+        float *matrix;
 
     public:
         // Class
         explicit SquareMatrix(int size);
 
-        template<typename T>
-        explicit SquareMatrix(T* matrix, int size) {
-            std::cout << "Need to search how to make sure handle errors" <<std::endl;
-        }
+
+        explicit SquareMatrix(const float matrix[], int size);
 
 
         ~SquareMatrix();

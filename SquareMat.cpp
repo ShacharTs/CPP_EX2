@@ -10,7 +10,7 @@ using namespace std;
 namespace Matrix {
     SquareMatrix::SquareMatrix(const int size) {
         this->size = size;
-        this->matrix = new double [size * size]();
+        this->matrix = new float [size * size]();
 
         for (int i = 0; i < this->size; ++i) {
             cout << "Enter row " << i << " values (" << this->size << " numbers): ";
@@ -18,6 +18,13 @@ namespace Matrix {
                 cin >> matrix[i * this->size + j];
             }
             cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
+        }
+    }
+
+    SquareMatrix::SquareMatrix(const float sqMatrix[],int size) :size(size) {
+        matrix = new float[size * size];
+        for (int i = 0; i < size * size; i++) {
+            matrix[i] = sqMatrix[i];
         }
     }
 
