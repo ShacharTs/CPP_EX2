@@ -152,4 +152,21 @@ namespace Matrix {
         return temp;
     }
 
+    SquareMatrix SquareMatrix::operator*(double scalar) const {
+        for (int i = 0; i < getSize();i++) {
+            this->matrix[i] = this->matrix[i] * scalar;
+        }
+        return *this;
+    }
+
+    SquareMatrix SquareMatrix::operator%(int mod) const {
+        for (int i = 0; i < getSize();i++) {
+            int temp = this->matrix[i];
+            this->matrix[i] = (int) (temp % mod);
+        }
+        return *this;
+    }
+
+
+
 }

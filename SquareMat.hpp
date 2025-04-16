@@ -13,7 +13,7 @@ namespace Matrix {
         SquareMatrix(int dimensionSize, bool allocateOnly);
 
         void checkdimensionSize(const SquareMatrix &other) const;
-        auto getSize() const -> int;
+
 
 
     public:
@@ -31,7 +31,7 @@ namespace Matrix {
                 matrix[i] = arr[i];
             }
         }
-
+        auto getSize() const -> int;
         auto getDimension() const -> int;
 
 

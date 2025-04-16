@@ -180,3 +180,53 @@ TEST_CASE("operator [] reading") {
 
     cout << "\n========================================\n";
 }
+
+TEST_CASE("operator = ") {
+    cout << "\n=== Running TEST_CASE: operator =   ===\n";
+    SquareMatrix m = createMatrix();
+    SquareMatrix b = m;
+
+    for (int i = 0; i < m.getDimension();i++) {
+        for (int j = 0; j < m.getDimension();j++) {
+            float mVal = m[i][j];
+            CHECK(b[i][j] == doctest::Approx(mVal));
+        }
+    }
+
+
+    cout << "\n========================================\n";
+}
+
+TEST_CASE("operator * (scalar) ") {
+    cout << "\n=== Running TEST_CASE: operator * (scalar)   ===\n";
+    SquareMatrix m = createMatrix();
+    SquareMatrix b = m * 2 ;
+    for (int i = 0; i < m.getDimension();i++) {
+        for (int j = 0; j < m.getDimension();j++) {
+            float mVal = b[i][j];
+            CHECK(b[i][j] == doctest::Approx(mVal));
+        }
+    }
+
+
+    cout << "\n========================================\n";
+}
+
+TEST_CASE("operator % (scalar) ") {
+    cout << "\n=== Running TEST_CASE: operator % (scalar)   ===\n";
+    SquareMatrix m = createMatrix();
+    int mod = 3;
+    SquareMatrix b = m % mod ;
+    for (int i = 0; i < m.getDimension();i++) {
+        for (int j = 0; j < m.getDimension();j++) {
+            int temp = b[i][j];
+            int mVal = temp % mod;
+            CHECK(b[i][j] == doctest::Approx(mVal));
+            cout << b[i][j] << " " ;
+        }
+    }
+
+
+    cout << "\n========================================\n";
+}
+
