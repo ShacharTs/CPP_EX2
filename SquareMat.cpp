@@ -30,14 +30,15 @@ namespace Matrix {
     int SquareMatrix::getSize() const {
         return getDimension() * getDimension();
     }
+
     int SquareMatrix::getDimension() const {
         return this->dimensionSize;
     }
 
-    float countTotal(const SquareMatrix &matrix)  {
+    float countTotal(const SquareMatrix &matrix) {
         float sum = 0;
-        for (int i = 0; i < matrix.getDimension();i++) {
-            for (int j= 0 ;j <matrix.getDimension(); j++) {
+        for (int i = 0; i < matrix.getDimension(); i++) {
+            for (int j = 0; j < matrix.getDimension(); j++) {
                 sum += matrix[i][j];
             }
         }
@@ -102,11 +103,13 @@ namespace Matrix {
         return out;
     }
 
-    float *SquareMatrix::operator[](int row) { // writing
+    float *SquareMatrix::operator[](int row) {
+        // writing
         return &matrix[row * getDimension()];
     }
 
-    const float *SquareMatrix::operator[](int row) const { // reading
+    const float *SquareMatrix::operator[](int row) const {
+        // reading
         return &matrix[row * getDimension()];
     }
 
@@ -154,8 +157,8 @@ namespace Matrix {
 
     SquareMatrix SquareMatrix::operator%(const SquareMatrix &other) const {
         checkdimensionSize(other);
-        SquareMatrix temp (other.getDimension(),true);
-        for (int i = 0; i < getSize();i++) {
+        SquareMatrix temp(other.getDimension(), true);
+        for (int i = 0; i < getSize(); i++) {
             int tempMod = this->matrix[i] * other.matrix[i];
             temp.matrix[i] = tempMod;
         }
@@ -163,27 +166,28 @@ namespace Matrix {
     }
 
     SquareMatrix SquareMatrix::operator*(const float scalar) const {
-        SquareMatrix temp (*this);
-        for (int i = 0; i < getSize();i++) {
+        SquareMatrix temp(*this);
+        for (int i = 0; i < getSize(); i++) {
             temp.matrix[i] = this->matrix[i] * scalar;
         }
         return temp;
     }
 
     SquareMatrix SquareMatrix::operator%(const int mod) const {
-        SquareMatrix temp (*this);
-        for (int i = 0; i < getSize();i++) {
+        SquareMatrix temp(*this);
+        for (int i = 0; i < getSize(); i++) {
             const int temp1 = this->matrix[i];
             temp.matrix[i] = (temp1 % mod);
         }
         return temp;
     }
+
     SquareMatrix SquareMatrix::operator/(const float scalar) const {
         if (scalar == 0) {
-            throw invalid_argument ("Scalar can not be zero");
+            throw invalid_argument("Scalar can not be zero");
         }
-        SquareMatrix temp (*this);
-        for (int i = 0; i < getSize();i++) {
+        SquareMatrix temp(*this);
+        for (int i = 0; i < getSize(); i++) {
             const float temp1 = this->matrix[i];
             temp.matrix[i] = temp1 / scalar;
         }
@@ -192,18 +196,18 @@ namespace Matrix {
 
     SquareMatrix SquareMatrix::operator^(int power) const {
         if (power < 0) {
-            throw invalid_argument ("Power must be positive");
+            throw invalid_argument("Power must be positive");
         }
         if (power == 0) {
-            SquareMatrix I (*this);
-            for (int i = 0; i < getSize();i++) {
+            SquareMatrix I(*this);
+            for (int i = 0; i < getSize(); i++) {
                 I.matrix[i] = 1;
             }
             return I;
         }
-        SquareMatrix temp (*this);
+        SquareMatrix temp(*this);
         if (power > 0) {
-            for (int i = 1; i < power;i++) {
+            for (int i = 1; i < power; i++) {
                 temp = temp * (*this);
             }
         }
@@ -217,6 +221,7 @@ namespace Matrix {
         }
         return *this;
     }
+
     SquareMatrix &SquareMatrix::operator-=(const SquareMatrix &other) {
         checkdimensionSize(other);
         for (int i = 0; i < getSize(); i++) {
@@ -227,12 +232,12 @@ namespace Matrix {
 
     SquareMatrix &SquareMatrix::operator*=(const SquareMatrix &other) {
         checkdimensionSize(other);
-        *this = *this *other;
+        *this = *this * other;
         return *this;
     }
 
     SquareMatrix &SquareMatrix::operator*=(const float scalar) {
-        *this = *this *scalar;
+        *this = *this * scalar;
         return *this;
     }
 
@@ -254,9 +259,9 @@ namespace Matrix {
         return *this;
     }
 
-    SquareMatrix &SquareMatrix::operator~()  {
-        for (int i= 0; i < this->getDimension();i++) {
-            for (int j = i+1; j <this->getDimension();j++) {
+    SquareMatrix &SquareMatrix::operator~() {
+        for (int i = 0; i < this->getDimension(); i++) {
+            for (int j = i + 1; j < this->getDimension(); j++) {
                 const float temp1 = this->matrix[i * getDimension() + j];
                 const float temp2 = this->matrix[j * getDimension() + i];
                 this->matrix[i * getDimension() + j] = temp2;
@@ -278,6 +283,7 @@ namespace Matrix {
     bool SquareMatrix::operator<(const SquareMatrix &other) const {
         return Matrix::countTotal(*this) < Matrix::countTotal(other);
     }
+
     bool SquareMatrix::operator<=(const SquareMatrix &other) const {
         return Matrix::countTotal(*this) <= Matrix::countTotal(other);
     }
@@ -290,8 +296,19 @@ namespace Matrix {
         return Matrix::countTotal(*this) >= Matrix::countTotal(other);
     }
 
+    SquareMatrix &SquareMatrix::operator++() {
+        for (int i = 0; i < getSize(); i++) {
+            this->matrix[i] += 1;
+        }
+        return *this;
+    }
 
-
+    SquareMatrix &SquareMatrix::operator--() {
+        for (int i = 0; i < getSize(); i++) {
+            this->matrix[i] -= 1;
+        }
+        return *this;
+    }
 
 
 

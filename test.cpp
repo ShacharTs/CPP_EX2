@@ -458,4 +458,37 @@ TEST_CASE("operator ~ ") {
     cout << "========================================\n";
 }
 
+TEST_CASE("operator ++ ") {
+    cout << "\n=== Running TEST_CASE: operator ++ ===\n";
+    SquareMatrix a = createMatrix();
+    SquareMatrix b = createMatrix();
+    ++a;
+    for (int i = 0; i < a.getDimension(); i++) {
+        for (int j =0; j < a.getDimension();j++) {
+            CHECK(a[i][j] == doctest::Approx(b[i][j]+1));
+        }
+
+
+    }
+
+
+    cout << "========================================\n";
+}
+
+TEST_CASE("operator -- ") {
+    cout << "\n=== Running TEST_CASE: operator -- ===\n";
+    SquareMatrix a = createMatrix();
+    SquareMatrix b = createMatrix();
+    --a;
+    for (int i = 0; i < a.getDimension(); i++) {
+        for (int j =0; j < a.getDimension();j++) {
+            CHECK(a[i][j] == doctest::Approx(b[i][j]-1));
+        }
+
+
+    }
+
+
+    cout << "========================================\n";
+}
 
