@@ -2,6 +2,3 @@
 
         Transpose and determinant
         float operator!() const; // Determinant
-
-        Friend functions
-        friend SquareMatrix operator*(float scalar, const SquareMatrix &mat); // scalar * matrix

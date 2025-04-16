@@ -525,4 +525,19 @@ TEST_CASE("operator -- (postfix)") {
     cout << "========================================\n";
 }
 
+TEST_CASE("operator * (friend scalar) ") {
+    cout << "\n=== Running TEST_CASE: operator * (friend scalar)   ===\n";
+    SquareMatrix m = createMatrix();
+    SquareMatrix b = 2*m;
+    for (int i = 0; i < m.getDimension(); i++) {
+        for (int j = 0; j < m.getDimension(); j++) {
+            float mVal = b[i][j];
+            CHECK(b[i][j] == doctest::Approx(mVal));
+            cout << b[i][j] << " ";
+        }
+    }
+
+
+    cout << "\n========================================\n";
+}
 

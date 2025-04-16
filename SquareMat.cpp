@@ -88,20 +88,8 @@ namespace Matrix {
      */
 
 
-    /**
-     * Printing the matrix
-     * @return
-     */
-    std::ostream &operator<<(std::ostream &out, const SquareMatrix &mat) {
-        cout << "Printing matrix" << endl;
-        for (int i = 0; i < mat.getDimension(); ++i) {
-            for (int j = 0; j < mat.getDimension(); ++j) {
-                out << mat.matrix[i * mat.getDimension() + j] << " ";
-            }
-            out << '\n';
-        }
-        return out;
-    }
+
+
 
     float *SquareMatrix::operator[](int row) {
         // writing
@@ -324,5 +312,21 @@ namespace Matrix {
             this->matrix[i] -=1;
         }
         return temp;
+    }
+
+
+    SquareMatrix operator*(float scalar, const SquareMatrix &mat) {
+        return mat * scalar;
+    }
+
+    std::ostream &operator<<(std::ostream &out, const SquareMatrix &mat) {
+        cout << "Printing matrix" << endl;
+        for (int i = 0; i < mat.getDimension(); ++i) {
+            for (int j = 0; j < mat.getDimension(); ++j) {
+                out << mat.matrix[i * mat.getDimension() + j] << " ";
+            }
+            out << '\n';
+        }
+        return out;
     }
 }
