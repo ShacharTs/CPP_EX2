@@ -34,6 +34,16 @@ namespace Matrix {
         return this->dimensionSize;
     }
 
+    float countTotal(const SquareMatrix &matrix)  {
+        float sum = 0;
+        for (int i = 0; i < matrix.getDimension();i++) {
+            for (int j= 0 ;j <matrix.getDimension(); j++) {
+                sum += matrix[i][j];
+            }
+        }
+        return sum;
+    }
+
 
     /**
      * Destructor
@@ -233,6 +243,28 @@ namespace Matrix {
 
 
 
+    bool SquareMatrix::operator==(const SquareMatrix &other) const {
+        return Matrix::countTotal(*this) == Matrix::countTotal(other);
+    }
+
+    bool SquareMatrix::operator!=(const SquareMatrix &other) const {
+        return Matrix::countTotal(*this) != Matrix::countTotal(other);
+    }
+
+    bool SquareMatrix::operator<(const SquareMatrix &other) const {
+        return Matrix::countTotal(*this) < Matrix::countTotal(other);
+    }
+    bool SquareMatrix::operator<=(const SquareMatrix &other) const {
+        return Matrix::countTotal(*this) <= Matrix::countTotal(other);
+    }
+
+    bool SquareMatrix::operator>(const SquareMatrix &other) const {
+        return Matrix::countTotal(*this) > Matrix::countTotal(other);
+    }
+
+    bool SquareMatrix::operator>=(const SquareMatrix &other) const {
+        return Matrix::countTotal(*this) >= Matrix::countTotal(other);
+    }
 
 
 

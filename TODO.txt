@@ -18,13 +18,7 @@
 
 
 
-        // Comparisons (based on sum of elements)
-        bool operator==(const SquareMatrix &other) const;
-        bool operator!=(const SquareMatrix &other) const;
-        bool operator<(const SquareMatrix &other) const;
-        bool operator<=(const SquareMatrix &other) const;
-        bool operator>(const SquareMatrix &other) const;
-        bool operator>=(const SquareMatrix &other) const;
+
 
         // Friend functions
         friend SquareMatrix operator*(float scalar, const SquareMatrix &mat); // scalar * matrix

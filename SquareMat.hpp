@@ -16,6 +16,7 @@ namespace Matrix {
 
 
 
+
     public:
         // Template constructor for auto-detecting array size
         template<size_t N>
@@ -33,7 +34,7 @@ namespace Matrix {
         }
         auto getSize() const -> int;
         auto getDimension() const -> int;
-
+        float countTotal(const SquareMatrix &matrix);
 
         SquareMatrix(const SquareMatrix &other); // copy constractor
         SquareMatrix &operator=(const SquareMatrix &other); // assignment operator
@@ -51,7 +52,7 @@ namespace Matrix {
         // Scalar operations
         SquareMatrix operator*(float scalar) const;
         SquareMatrix operator%(int mod) const;
-        SquareMatrix operator/(int scalar) const;
+        SquareMatrix operator/(float scalar) const;
         SquareMatrix operator^(int power) const;
 
 
@@ -62,9 +63,9 @@ namespace Matrix {
         SquareMatrix &operator*=(const SquareMatrix &other);
         SquareMatrix &operator/=(const SquareMatrix &other);
         SquareMatrix &operator%=(const SquareMatrix &other);
-        SquareMatrix &operator*=(double scalar);
+        SquareMatrix &operator*=(float scalar);
         SquareMatrix &operator%=(int mod);
-        SquareMatrix &operator/=(int scalar);
+        SquareMatrix &operator/=(float scalar);
 
         // Increment / Decrement
         // Prefix -> do it and then update

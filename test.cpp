@@ -344,3 +344,56 @@ TEST_CASE("operator /= (scalar) ") {
     cout << "\n========================================\n";
 }
 
+TEST_CASE("operator == ") {
+    cout << "\n=== Running TEST_CASE: operator == ===\n";
+    SquareMatrix a = createMatrix();   // sum = 45
+    SquareMatrix b = createMatrix();   // same
+    CHECK(a == b);
+    cout << "========================================\n";
+}
+
+TEST_CASE("operator != ") {
+    cout << "\n=== Running TEST_CASE: operator != ===\n";
+    SquareMatrix a = createMatrix();         // sum = 45
+    SquareMatrix b = createMatrix(10);       // 10 to 18  sum = 126
+    CHECK(a != b);
+    cout << "========================================\n";
+}
+
+TEST_CASE("operator < ") {
+    cout << "\n=== Running TEST_CASE: operator < ===\n";
+    SquareMatrix a = createMatrix();         // sum = 45
+    SquareMatrix b = createMatrix(10);       // sum = 126
+    CHECK(a < b);
+    cout << "========================================\n";
+}
+
+TEST_CASE("operator <= ") {
+    cout << "\n=== Running TEST_CASE: operator <= ===\n";
+    SquareMatrix a = createMatrix();         // sum = 45
+    SquareMatrix b = createMatrix();         // sum = 45
+    SquareMatrix c = createMatrix(10);       // sum = 126
+    CHECK(a <= b);
+    CHECK(a <= c);
+    cout << "========================================\n";
+}
+
+TEST_CASE("operator > ") {
+    cout << "\n=== Running TEST_CASE: operator > ===\n";
+    SquareMatrix a = createMatrix(10);       // sum = 126
+    SquareMatrix b = createMatrix();         // sum = 45
+    CHECK(a > b);
+    cout << "========================================\n";
+}
+
+TEST_CASE("operator >= ") {
+    cout << "\n=== Running TEST_CASE: operator >= ===\n";
+    SquareMatrix a = createMatrix();         // sum = 45
+    SquareMatrix b = createMatrix();         // sum = 45
+    SquareMatrix c = createMatrix(2);        // sum > 45
+    CHECK(a >= b);
+    CHECK(c >= a);
+    cout << "========================================\n";
+}
+
+
