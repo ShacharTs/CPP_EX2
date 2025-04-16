@@ -343,7 +343,7 @@ namespace Matrix {
                 }
             }
 
-            float sign = (col % 2 == 0) ? 1.0f : -1.0f;
+            const float sign = (col % 2 == 0) ? 1.0f : -1.0f;
             det += sign * matrix[col] * detHelper(subMatrix, dim - 1);
         }
 
