@@ -1,4 +1,2 @@
         //TODO LIST METHODS
-
-        Transpose and determinant
-        float operator!() const; // Determinant
+        :)
