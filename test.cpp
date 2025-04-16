@@ -205,6 +205,7 @@ TEST_CASE("operator * (scalar) ") {
         for (int j = 0; j < m.getDimension();j++) {
             float mVal = b[i][j];
             CHECK(b[i][j] == doctest::Approx(mVal));
+            cout << b[i][j] << " ";
         }
     }
 
@@ -222,7 +223,41 @@ TEST_CASE("operator % (scalar) ") {
             int temp = b[i][j];
             int mVal = temp % mod;
             CHECK(b[i][j] == doctest::Approx(mVal));
-            //cout << b[i][j] << " " ;
+            cout << b[i][j] << " " ;
+        }
+    }
+
+
+    cout << "\n========================================\n";
+}
+TEST_CASE("operator / (scalar) ") {
+    cout << "\n=== Running TEST_CASE: operator / (scalar)   ===\n";
+    SquareMatrix m = createMatrix();
+    int div = 3;
+    SquareMatrix b = (m / div) ;
+    for (int i = 0; i < m.getDimension();i++) {
+        for (int j = 0; j < m.getDimension();j++) {
+            float temp = m[i][j];
+            float mVal = temp / div;
+            CHECK(b[i][j] == doctest::Approx(mVal));
+            cout << b[i][j] << " " ;
+        }
+    }
+
+
+    cout << "\n========================================\n";
+}
+
+TEST_CASE("operator ^ (scalar) ") {
+    cout << "\n=== Running TEST_CASE: operator ^ (scalar)   ===\n";
+    SquareMatrix m = createMatrix();
+    int power = 3;
+    SquareMatrix b = (m ^ power) ;
+    SquareMatrix manual = m * m * m;
+    for (int i = 0; i < m.getDimension();i++) {
+        for (int j = 0; j < m.getDimension();j++) {
+            CHECK(b[i][j] == doctest::Approx(manual[i][j]));
+            cout << b[i][j] << " " ;
         }
     }
 

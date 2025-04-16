@@ -49,7 +49,7 @@ namespace Matrix {
         SquareMatrix operator%(const SquareMatrix &other) const; // element-wise (mult)
 
         // Scalar operations
-        SquareMatrix operator*(double scalar) const;
+        SquareMatrix operator*(float scalar) const;
         SquareMatrix operator%(int mod) const;
         SquareMatrix operator/(int scalar) const;
         SquareMatrix operator^(int power) const;

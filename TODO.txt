@@ -1,7 +1,4 @@
-        // Scalar operations
-        SquareMatrix operator%(int mod) const;
-        SquareMatrix operator/(int scalar) const;
-        SquareMatrix operator^(int power) const;
+
 
 
 

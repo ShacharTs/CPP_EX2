@@ -152,20 +152,54 @@ namespace Matrix {
         return temp;
     }
 
-    SquareMatrix SquareMatrix::operator*(double scalar) const {
+    SquareMatrix SquareMatrix::operator*(const float scalar) const {
+        SquareMatrix temp (*this);
         for (int i = 0; i < getSize();i++) {
-            this->matrix[i] = this->matrix[i] * scalar;
+            temp.matrix[i] = this->matrix[i] * scalar;
         }
-        return *this;
+        return temp;
     }
 
-    SquareMatrix SquareMatrix::operator%(int mod) const {
+    SquareMatrix SquareMatrix::operator%(const int mod) const {
+        SquareMatrix temp (*this);
         for (int i = 0; i < getSize();i++) {
-            int temp = this->matrix[i];
-            this->matrix[i] = (int) (temp % mod);
+            const int temp1 = this->matrix[i];
+            temp.matrix[i] = (temp1 % mod);
         }
-        return *this;
+        return temp;
     }
+    SquareMatrix SquareMatrix::operator/(const int scalar) const {
+        if (scalar == 0) {
+            throw invalid_argument ("Scalar can not be zero");
+        }
+        SquareMatrix temp (*this);
+        for (int i = 0; i < getSize();i++) {
+            const float temp1 = this->matrix[i];
+            temp.matrix[i] = temp1 / scalar;
+        }
+        return temp;
+    }
+
+    SquareMatrix SquareMatrix::operator^(int power) const {
+        if (power < 0) {
+            throw invalid_argument ("Power must be positive");
+        }
+        if (power == 0) {
+            SquareMatrix I (*this);
+            for (int i = 0; i < getSize();i++) {
+                I.matrix[i] = 1;
+            }
+            return I;
+        }
+        SquareMatrix temp (*this);
+        if (power > 0) {
+            for (int i = 1; i < power;i++) {
+                temp = temp * (*this);
+            }
+        }
+        return temp;
+    }
+
 
 
 
