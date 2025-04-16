@@ -222,7 +222,7 @@ TEST_CASE("operator % (scalar) ") {
             int temp = b[i][j];
             int mVal = temp % mod;
             CHECK(b[i][j] == doctest::Approx(mVal));
-            cout << b[i][j] << " " ;
+            //cout << b[i][j] << " " ;
         }
     }
 
