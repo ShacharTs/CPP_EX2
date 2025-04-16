@@ -66,6 +66,7 @@ TEST_CASE("operator -") {
     CHECK(result[1][1] == doctest::Approx(3));
     cout << "\n========================================\n";
 }
+
 TEST_CASE("operator - (Unary numeral)") {
     cout << "\n=== Running TEST_CASE: operator - (Unary numeral) ===\n";
     float arr1[] = {1, 2, 3, 4};
@@ -76,5 +77,50 @@ TEST_CASE("operator - (Unary numeral)") {
     CHECK(m1[0][1] == doctest::Approx(-2));
     CHECK(m1[1][0] == doctest::Approx(-3));
     CHECK(m1[1][1] == doctest::Approx(-4));
+    cout << "\n========================================\n";
+}
+
+TEST_CASE("operator *") {
+    cout << "\n=== Running TEST_CASE: operator *  ===\n";
+    float arr1[] = {1, 2, 3, 4};
+    float arr2[] = {5, 6, 7, 8};
+    SquareMatrix m1(arr1);
+    SquareMatrix m2(arr2);
+    SquareMatrix m3 = m1*m2;
+    CHECK(m3[0][0] == doctest::Approx(19));
+    CHECK(m3[0][1] == doctest::Approx(22));
+    CHECK(m3[1][0] == doctest::Approx(43));
+    CHECK(m3[1][1] == doctest::Approx(50));
+    cout << m3 << endl;
+    cout << "\n========================================\n";
+}
+
+TEST_CASE("operator % element-wise (mult)") {
+    cout << "\n=== Running TEST_CASE: operator % element-wise (mult)  ===\n";
+    float arr1[] = {1, 2, 3, 4};
+    float arr2[] = {5, 6, 7, 8};
+    SquareMatrix m1(arr1);
+    SquareMatrix m2(arr2);
+    SquareMatrix m3 = m1%m2;
+    CHECK(m3[0][0] == doctest::Approx(5));
+    CHECK(m3[0][1] == doctest::Approx(12));
+    CHECK(m3[1][0] == doctest::Approx(21));
+    CHECK(m3[1][1] == doctest::Approx(32));
+    cout << m3 << endl;
+    cout << "\n========================================\n";
+}
+
+TEST_CASE("operator []] writing") {
+    cout << "\n=== Running TEST_CASE: operator []] writing  ===\n";
+    float arr1[] = {1, 2, 3, 4};
+    SquareMatrix m1(arr1);
+    m1[0][0] = 7;
+    m1[0][1] = 7;
+    m1[1][0] = 7;
+    m1[1][1] = 7;
+    CHECK(m1[0][0] == doctest::Approx(7));
+    CHECK(m1[0][1] == doctest::Approx(7));
+    CHECK(m1[1][0] == doctest::Approx(7));
+    CHECK(m1[1][1] == doctest::Approx(7));
     cout << "\n========================================\n";
 }

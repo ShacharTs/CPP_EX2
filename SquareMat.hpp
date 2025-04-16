@@ -13,6 +13,7 @@ namespace Matrix {
         SquareMatrix(int dimensionSize, bool allocateOnly);
 
         void checkdimensionSize(const SquareMatrix &other) const;
+        auto getSize() const -> int;
 
     public:
         // Template constructor for auto-detecting array size
@@ -31,6 +32,7 @@ namespace Matrix {
         }
 
 
+
         SquareMatrix(const SquareMatrix &other); // copy constractor
         SquareMatrix &operator=(const SquareMatrix &other); // assignment operator
 
@@ -42,7 +44,7 @@ namespace Matrix {
         SquareMatrix operator-(const SquareMatrix &other) const;
         SquareMatrix operator-(); // Unary minus
         SquareMatrix operator*(const SquareMatrix &other) const;
-        SquareMatrix operator%(const SquareMatrix &other) const; // element-wise
+        SquareMatrix operator%(const SquareMatrix &other) const; // element-wise (mult)
 
         // Scalar operations
         SquareMatrix operator*(double scalar) const;

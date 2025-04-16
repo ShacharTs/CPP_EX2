@@ -27,6 +27,10 @@ namespace Matrix {
         }
     }
 
+    int SquareMatrix::getSize() const {
+        return dimensionSize * dimensionSize;
+    }
+
 
     /**
      * Destructor
@@ -60,15 +64,15 @@ namespace Matrix {
     }
 
 
-        /**
-         * =============================================================================
-         *                              Operator Behavior Note
-         * -----------------------------------------------------------------------------
-         *          All the operators work in the same way:
-         *          this->matrix   => the left-hand side argument (lhs)
-         *          other.matrix   => the right-hand side argument (rhs)
-         * -----------------------------------------------------------------------------
-         */
+    /**
+     * =============================================================================
+     *                              Operator Behavior Note
+     * -----------------------------------------------------------------------------
+     *          All the operators work in the same way:
+     *          this->matrix   => the left-hand side argument (lhs)
+     *          other.matrix   => the right-hand side argument (rhs)
+     * -----------------------------------------------------------------------------
+     */
 
 
     /**
@@ -86,11 +90,11 @@ namespace Matrix {
         return out;
     }
 
-    float *SquareMatrix::operator[](int row) {
+    float *SquareMatrix::operator[](int row) { // writing
         return &matrix[row * dimensionSize];
     }
 
-    const float *SquareMatrix::operator[](int row) const {
+    const float *SquareMatrix::operator[](int row) const { // reading
         return &matrix[row * dimensionSize];
     }
 
@@ -114,11 +118,36 @@ namespace Matrix {
         return temp;
     }
 
-    SquareMatrix SquareMatrix::operator-(){
+    SquareMatrix SquareMatrix::operator-() {
         for (int i = 0; i < this->dimensionSize * this->dimensionSize; i++) {
             this->matrix[i] = this->matrix[i] * (-1);
         }
         return *this;
+    }
+
+    SquareMatrix SquareMatrix::operator*(const SquareMatrix &other) const {
+        checkdimensionSize(other);
+        SquareMatrix temp(other.dimensionSize, true);
+        for (int i = 0; i < this->dimensionSize; i++) {
+            for (int j = 0; j < dimensionSize; j++) {
+                float sum = 0;
+                for (int k = 0; k < dimensionSize; k++) {
+                    sum += this->matrix[i * dimensionSize + k] * other.matrix[k * dimensionSize + j];
+                }
+                temp.matrix[i * dimensionSize + j] = sum;;
+            }
+        }
+        return temp;
+    }
+
+    SquareMatrix SquareMatrix::operator%(const SquareMatrix &other) const {
+        checkdimensionSize(other);
+        SquareMatrix temp (other.dimensionSize,true);
+        for (int i = 0; i < getSize();i++) {
+            int tempMod = this->matrix[i] * other.matrix[i];
+            temp.matrix[i] = tempMod;
+        }
+        return temp;
     }
 
 }
