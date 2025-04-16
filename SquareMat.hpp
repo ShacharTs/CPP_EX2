@@ -39,7 +39,8 @@ namespace Matrix {
         auto getSize() const -> int;
         auto getDimension() const -> int;
         float countTotal(const SquareMatrix &matrix);
-        float detHelper(const float* matrix,int dim);
+
+        static float detHelper(const float* matrix,int dim);
 
         SquareMatrix(const SquareMatrix &other); // copy constractor
         SquareMatrix &operator=(const SquareMatrix &other); // assignment operator
