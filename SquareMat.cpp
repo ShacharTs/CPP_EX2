@@ -168,7 +168,7 @@ namespace Matrix {
         }
         return temp;
     }
-    SquareMatrix SquareMatrix::operator/(const int scalar) const {
+    SquareMatrix SquareMatrix::operator/(const float scalar) const {
         if (scalar == 0) {
             throw invalid_argument ("Scalar can not be zero");
         }
@@ -199,6 +199,39 @@ namespace Matrix {
         }
         return temp;
     }
+
+    SquareMatrix &SquareMatrix::operator+=(const SquareMatrix &other) {
+        checkdimensionSize(other);
+        for (int i = 0; i < getSize(); i++) {
+            this->matrix[i] += other.matrix[i];
+        }
+        return *this;
+    }
+    SquareMatrix &SquareMatrix::operator-=(const SquareMatrix &other) {
+        checkdimensionSize(other);
+        for (int i = 0; i < getSize(); i++) {
+            this->matrix[i] -= other.matrix[i];
+        }
+        return *this;
+    }
+
+    SquareMatrix &SquareMatrix::operator*=(const SquareMatrix &other) {
+        checkdimensionSize(other);
+        *this = *this *other;
+        return *this;
+    }
+
+    SquareMatrix &SquareMatrix::operator*=(const float scalar) {
+        *this = *this *scalar;
+        return *this;
+    }
+
+    SquareMatrix &SquareMatrix::operator/=(const float scalar) {
+        *this = *this / scalar;
+        return *this;
+    }
+
+
 
 
 

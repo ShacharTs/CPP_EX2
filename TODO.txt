@@ -1,16 +1,8 @@
 
 
-
-
         // Compound assignment
-        SquareMatrix &operator+=(const SquareMatrix &other);
-        SquareMatrix &operator-=(const SquareMatrix &other);
-        SquareMatrix &operator*=(const SquareMatrix &other);
-        SquareMatrix &operator/=(const SquareMatrix &other);
         SquareMatrix &operator%=(const SquareMatrix &other);
-        SquareMatrix &operator*=(double scalar);
         SquareMatrix &operator%=(int mod);
-        SquareMatrix &operator/=(int scalar);
 
         // Increment / Decrement
         // Prefix -> do it and then update

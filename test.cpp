@@ -265,3 +265,82 @@ TEST_CASE("operator ^ (scalar) ") {
     cout << "\n========================================\n";
 }
 
+TEST_CASE("operator += ") {
+    cout << "\n=== Running TEST_CASE: operator +=   ===\n";
+    SquareMatrix m = createMatrix();
+    SquareMatrix b = createMatrix();
+    m+=b;
+    for (int i = 0; i < m.getDimension();i++) {
+        for (int j = 0; j < m.getDimension();j++) {
+            CHECK(m[i][j] == doctest::Approx(b[i][j] + b[i][j]));
+            cout << m[i][j] << " " ;
+        }
+    }
+
+
+    cout << "\n========================================\n";
+}
+TEST_CASE("operator -= ") {
+    cout << "\n=== Running TEST_CASE: operator -=   ===\n";
+    SquareMatrix m = createMatrix();
+    SquareMatrix b = createMatrix();
+    m-=b;
+    for (int i = 0; i < m.getDimension();i++) {
+        for (int j = 0; j < m.getDimension();j++) {
+            CHECK(m[i][j] == doctest::Approx(0));
+            cout << m[i][j] << " " ;
+        }
+    }
+
+
+    cout << "\n========================================\n";
+}
+
+TEST_CASE("operator *= ") {
+    cout << "\n=== Running TEST_CASE: operator *=   ===\n";
+    SquareMatrix m = createMatrix();
+    SquareMatrix b = createMatrix();
+    SquareMatrix manual = m * b;
+    m*=b;
+    for (int i = 0; i < m.getDimension();i++) {
+        for (int j = 0; j < m.getDimension();j++) {
+            CHECK(m[i][j] == doctest::Approx(manual[i][j]));
+            cout << m[i][j] << " " ;
+        }
+    }
+
+
+    cout << "\n========================================\n";
+}
+TEST_CASE("operator *= (scalar) ") {
+    cout << "\n=== Running TEST_CASE: operator *= (scalar)   ===\n";
+    SquareMatrix m = createMatrix();
+    SquareMatrix manual = m * 5;
+    m*=5;
+    for (int i = 0; i < m.getDimension();i++) {
+        for (int j =0 ; j<m.getDimension();j++) {
+            CHECK(m[i][j] == doctest::Approx(manual[i][j]));
+            cout << m[i][j] << " " ;
+        }
+    }
+
+
+    cout << "\n========================================\n";
+}
+
+TEST_CASE("operator /= (scalar) ") {
+    cout << "\n=== Running TEST_CASE: operator /= (scalar)   ===\n";
+    SquareMatrix m = createMatrix();
+    SquareMatrix manual = m / 5;
+    m/=5;
+    for (int i = 0; i < m.getDimension();i++) {
+        for (int j =0 ; j<m.getDimension();j++) {
+            CHECK(m[i][j] == doctest::Approx(manual[i][j]));
+            cout << m[i][j] << " " ;
+        }
+    }
+
+
+    cout << "\n========================================\n";
+}
+
