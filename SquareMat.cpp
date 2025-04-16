@@ -53,6 +53,8 @@ namespace Matrix {
         delete[] matrix;
     }
 
+
+
     // Copy constructor
     SquareMatrix::SquareMatrix(const SquareMatrix &other)
         : dimensionSize(other.dimensionSize) {
@@ -86,9 +88,6 @@ namespace Matrix {
      *          other.matrix   => the right-hand side argument (rhs)
      * -----------------------------------------------------------------------------
      */
-
-
-
 
 
     float *SquareMatrix::operator[](int row) {
@@ -229,6 +228,7 @@ namespace Matrix {
         return *this;
     }
 
+
     SquareMatrix &SquareMatrix::operator/=(const float scalar) {
         *this = *this / scalar;
         return *this;
@@ -299,17 +299,17 @@ namespace Matrix {
     }
 
     SquareMatrix SquareMatrix::operator++(int) {
-        SquareMatrix temp (*this);
+        SquareMatrix temp(*this);
         for (int i = 0; i < this->getSize(); i++) {
-            this->matrix[i] +=1;
+            this->matrix[i] += 1;
         }
         return temp;
     }
 
     SquareMatrix SquareMatrix::operator--(int) {
-        SquareMatrix temp (*this);
+        SquareMatrix temp(*this);
         for (int i = 0; i < this->getSize(); i++) {
-            this->matrix[i] -=1;
+            this->matrix[i] -= 1;
         }
         return temp;
     }
@@ -318,6 +318,45 @@ namespace Matrix {
     SquareMatrix operator*(float scalar, const SquareMatrix &mat) {
         return mat * scalar;
     }
+
+    float SquareMatrix::detHelper(const float* matrix, int dim) {
+        if (dim == 1) {
+            return matrix[0];
+        }
+
+        if (dim == 2) {
+            return matrix[0] * matrix[3] - matrix[1] * matrix[2];
+        }
+
+        float det = 0;
+        float* subMatrix = new float[(dim - 1) * (dim - 1)];
+
+        for (int col = 0; col < dim; ++col) {
+            // Build sub-matrix excluding row 0 and column `col`
+            int subIndex = 0;
+            for (int i = 1; i < dim; ++i) {
+                for (int j = 0; j < dim; ++j) {
+                    if (j == col) {
+                        continue;
+                    }
+                    subMatrix[subIndex++] = matrix[i * dim + j];
+                }
+            }
+
+            float sign = (col % 2 == 0) ? 1.0f : -1.0f;
+            det += sign * matrix[col] * detHelper(subMatrix, dim - 1);
+        }
+
+        delete[] subMatrix;
+        return det;
+    }
+
+
+    float SquareMatrix::operator!() {
+        return detHelper(this->matrix, this->getDimension());
+    }
+
+
 
     std::ostream &operator<<(std::ostream &out, const SquareMatrix &mat) {
         cout << "Printing matrix" << endl;

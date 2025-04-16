@@ -541,3 +541,13 @@ TEST_CASE("operator * (friend scalar) ") {
     cout << "\n========================================\n";
 }
 
+TEST_CASE("operator ! ") {
+    cout << "\n=== Running TEST_CASE: operator !   ===\n";
+    float arr[] = {2,3,1,4,1,-3,1,0,2};
+    SquareMatrix m (arr);
+    CHECK(!m == doctest::Approx(-30));
+
+
+    cout << "\n========================================\n";
+}
+
