@@ -1,7 +1,7 @@
+        //TODO LIST METHODS
 
-        // Transpose and determinant
+        Transpose and determinant
         float operator!() const; // Determinant
 
-
-        // Friend functions
+        Friend functions
         friend SquareMatrix operator*(float scalar, const SquareMatrix &mat); // scalar * matrix

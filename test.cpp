@@ -492,3 +492,37 @@ TEST_CASE("operator -- ") {
     cout << "========================================\n";
 }
 
+TEST_CASE("operator ++ (postfix)") {
+    cout << "\n=== Running TEST_CASE: operator ++ (postfix) ===\n";
+
+    SquareMatrix a = createMatrix();
+    SquareMatrix before = a++;
+
+    for (int i = 0; i < a.getDimension(); i++) {
+        for (int j = 0; j < a.getDimension(); j++) {
+            CHECK(a[i][j] == doctest::Approx(before[i][j] + 1));
+
+            CHECK(before[i][j] == doctest::Approx(createMatrix()[i][j]));
+        }
+    }
+
+    cout << "========================================\n";
+}
+
+TEST_CASE("operator -- (postfix)") {
+    cout << "\n=== Running TEST_CASE: operator -- (postfix) ===\n";
+
+    SquareMatrix a = createMatrix();
+    SquareMatrix before = a--;
+
+    for (int i = 0; i < a.getDimension(); i++) {
+        for (int j = 0; j < a.getDimension(); j++) {
+            CHECK(a[i][j] == doctest::Approx(before[i][j] - 1));
+            CHECK(before[i][j] == doctest::Approx(createMatrix()[i][j]));
+        }
+    }
+
+    cout << "========================================\n";
+}
+
+

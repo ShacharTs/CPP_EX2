@@ -310,6 +310,19 @@ namespace Matrix {
         return *this;
     }
 
+    SquareMatrix SquareMatrix::operator++(int) {
+        SquareMatrix temp (*this);
+        for (int i = 0; i < this->getSize(); i++) {
+            this->matrix[i] +=1;
+        }
+        return temp;
+    }
 
-
+    SquareMatrix SquareMatrix::operator--(int) {
+        SquareMatrix temp (*this);
+        for (int i = 0; i < this->getSize(); i++) {
+            this->matrix[i] -=1;
+        }
+        return temp;
+    }
 }
