@@ -27,7 +27,6 @@ TEST_CASE("Invalid array") {
 }
 
 
-
 TEST_CASE("Invalid dim size (2 Matrix)") {
     cout << "\n=== Running TEST_CASE: Invalid dim size (2 Matrix) ===\n";
     float arr1[] = {1, 2, 3, 4};
@@ -443,15 +442,13 @@ TEST_CASE("operator >= ") {
 TEST_CASE("operator ~ ") {
     cout << "\n=== Running TEST_CASE: operator ~ ===\n";
     SquareMatrix a = createMatrix();
-    float arr[] = {1,4,7,2,5,8,3,6,9};
-    SquareMatrix b (arr);
+    float arr[] = {1, 4, 7, 2, 5, 8, 3, 6, 9};
+    SquareMatrix b(arr);
     ~a;
     for (int i = 0; i < a.getDimension(); i++) {
-        for (int j =0; j < a.getDimension();j++) {
+        for (int j = 0; j < a.getDimension(); j++) {
             CHECK(a[i][j] == doctest::Approx(b[i][j]));
         }
-
-
     }
 
 
@@ -464,11 +461,9 @@ TEST_CASE("operator ++ ") {
     SquareMatrix b = createMatrix();
     ++a;
     for (int i = 0; i < a.getDimension(); i++) {
-        for (int j =0; j < a.getDimension();j++) {
+        for (int j = 0; j < a.getDimension(); j++) {
             CHECK(a[i][j] == doctest::Approx(b[i][j]+1));
         }
-
-
     }
 
 
@@ -481,11 +476,9 @@ TEST_CASE("operator -- ") {
     SquareMatrix b = createMatrix();
     --a;
     for (int i = 0; i < a.getDimension(); i++) {
-        for (int j =0; j < a.getDimension();j++) {
+        for (int j = 0; j < a.getDimension(); j++) {
             CHECK(a[i][j] == doctest::Approx(b[i][j]-1));
         }
-
-
     }
 
 
@@ -528,7 +521,7 @@ TEST_CASE("operator -- (postfix)") {
 TEST_CASE("operator * (friend scalar) ") {
     cout << "\n=== Running TEST_CASE: operator * (friend scalar)   ===\n";
     SquareMatrix m = createMatrix();
-    SquareMatrix b = 2*m;
+    SquareMatrix b = 2 * m;
     for (int i = 0; i < m.getDimension(); i++) {
         for (int j = 0; j < m.getDimension(); j++) {
             float mVal = b[i][j];
@@ -543,11 +536,10 @@ TEST_CASE("operator * (friend scalar) ") {
 
 TEST_CASE("operator ! ") {
     cout << "\n=== Running TEST_CASE: operator !   ===\n";
-    float arr[] = {2,3,1,4,1,-3,1,0,2};
-    SquareMatrix m (arr);
+    float arr[] = {2, 3, 1, 4, 1, -3, 1, 0, 2};
+    SquareMatrix m(arr);
     CHECK(!m == doctest::Approx(-30));
 
 
     cout << "\n========================================\n";
 }
-
