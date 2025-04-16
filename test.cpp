@@ -114,6 +114,8 @@ TEST_CASE("operator []] writing") {
     cout << "\n=== Running TEST_CASE: operator []] writing  ===\n";
     float arr1[] = {1, 2, 3, 4};
     SquareMatrix m1(arr1);
+    cout << m1 << endl;
+    cout << "Set all values to 7" << endl;
     m1[0][0] = 7;
     m1[0][1] = 7;
     m1[1][0] = 7;
@@ -122,5 +124,6 @@ TEST_CASE("operator []] writing") {
     CHECK(m1[0][1] == doctest::Approx(7));
     CHECK(m1[1][0] == doctest::Approx(7));
     CHECK(m1[1][1] == doctest::Approx(7));
+    cout << m1 << endl;
     cout << "\n========================================\n";
 }
