@@ -48,103 +48,135 @@ TEST_CASE("Invalid dim size (2 Matrix)") {
 
 TEST_CASE("operator +") {
     cout << "\n=== Running TEST_CASE: operator + ===\n";
-    float arr1[] = {1, 2, 3, 4};
-    float arr2[] = {4, 3, 2, 1};
-    SquareMatrix m1(arr1);
-    SquareMatrix m2(arr2);
+    SquareMatrix m1 = createMatrix(); // 1–9
+    SquareMatrix m2 = createMatrix(10); // 10–18
     SquareMatrix result = m1 + m2;
-    CHECK(result[0][0] == doctest::Approx(5));
-    CHECK(result[0][1] == doctest::Approx(5));
-    CHECK(result[1][0] == doctest::Approx(5));
-    CHECK(result[1][1] == doctest::Approx(5));
+
+    for (int i = 0; i < m1.getDimension(); ++i) {
+        for (int j = 0; j < m1.getDimension(); ++j) {
+            CHECK(result[i][j] == doctest::Approx(m1[i][j] + m2[i][j]));
+        }
+    }
+
     cout << "\n========================================\n";
 }
+
 
 TEST_CASE("operator -") {
     cout << "\n=== Running TEST_CASE: operator - ===\n";
-    float arr1[] = {1, 2, 3, 4};
-    float arr2[] = {4, 3, 2, 1};
-    SquareMatrix m1(arr1);
-    SquareMatrix m2(arr2);
+    SquareMatrix m1 = createMatrix(10);
+    SquareMatrix m2 = createMatrix(1);
     SquareMatrix result = m1 - m2;
-    CHECK(result[0][0] == doctest::Approx(-3));
-    CHECK(result[0][1] == doctest::Approx(-1));
-    CHECK(result[1][0] == doctest::Approx(1));
-    CHECK(result[1][1] == doctest::Approx(3));
+
+    for (int i = 0; i < m1.getDimension(); ++i) {
+        for (int j = 0; j < m1.getDimension(); ++j) {
+            CHECK(result[i][j] == doctest::Approx(m1[i][j] - m2[i][j]));
+        }
+    }
+
     cout << "\n========================================\n";
 }
+
+
 
 TEST_CASE("operator - (Unary numeral)") {
     cout << "\n=== Running TEST_CASE: operator - (Unary numeral) ===\n";
-    float arr1[] = {1, 2, 3, 4};
-    SquareMatrix m1(arr1);
+    SquareMatrix m1 = createMatrix();
     -m1;
-    cout << "Check operator - (Unary numeral)" << endl;
-    CHECK(m1[0][0] == doctest::Approx(-1));
-    CHECK(m1[0][1] == doctest::Approx(-2));
-    CHECK(m1[1][0] == doctest::Approx(-3));
-    CHECK(m1[1][1] == doctest::Approx(-4));
+
+    for (int i = 0; i < m1.getDimension(); ++i) {
+        for (int j = 0; j < m1.getDimension(); ++j) {
+            CHECK(m1[i][j] == doctest::Approx(-(i * m1.getDimension() + j + 1)));
+        }
+    }
+
     cout << "\n========================================\n";
 }
+
 
 TEST_CASE("operator *") {
-    cout << "\n=== Running TEST_CASE: operator *  ===\n";
-    float arr1[] = {1, 2, 3, 4};
-    float arr2[] = {5, 6, 7, 8};
+    cout << "\n=== Running TEST_CASE: operator * ===\n";
+
+    float arr1[9] = {
+        1, 2, 3,
+        4, 5, 6,
+        7, 8, 9
+    };
+
+    float arr2[9] = {
+        9, 8, 7,
+        6, 5, 4,
+        3, 2, 1
+    };
+
     SquareMatrix m1(arr1);
     SquareMatrix m2(arr2);
-    SquareMatrix m3 = m1*m2;
-    CHECK(m3[0][0] == doctest::Approx(19));
-    CHECK(m3[0][1] == doctest::Approx(22));
-    CHECK(m3[1][0] == doctest::Approx(43));
-    CHECK(m3[1][1] == doctest::Approx(50));
-    cout << m3 << endl;
+    SquareMatrix result = m1 * m2;
+
+    float expected[9] = {
+        30, 24, 18,
+        84, 69, 54,
+        138,114, 90
+    };
+
+    for (int i = 0; i < 9; ++i) {
+        CHECK(result[i / 3][i % 3] == doctest::Approx(expected[i]));
+    }
+
+    cout << result << endl;
     cout << "\n========================================\n";
 }
+
 
 TEST_CASE("operator % element-wise (mult)") {
-    cout << "\n=== Running TEST_CASE: operator % element-wise (mult)  ===\n";
-    float arr1[] = {1, 2, 3, 4};
-    float arr2[] = {5, 6, 7, 8};
-    SquareMatrix m1(arr1);
-    SquareMatrix m2(arr2);
-    SquareMatrix m3 = m1%m2;
-    CHECK(m3[0][0] == doctest::Approx(5));
-    CHECK(m3[0][1] == doctest::Approx(12));
-    CHECK(m3[1][0] == doctest::Approx(21));
-    CHECK(m3[1][1] == doctest::Approx(32));
-    cout << m3 << endl;
+    cout << "\n=== Running TEST_CASE: operator % element-wise (mult) ===\n";
+    SquareMatrix m1 = createMatrix(1);
+    SquareMatrix m2 = createMatrix(2);
+    SquareMatrix result = m1 % m2;
+
+    for (int i = 0; i < result.getDimension(); ++i) {
+        for (int j = 0; j < result.getDimension(); ++j) {
+            CHECK(result[i][j] == doctest::Approx(m1[i][j] * m2[i][j]));
+        }
+    }
+
+    cout << result << endl;
     cout << "\n========================================\n";
 }
 
-TEST_CASE("operator []] writing") {
-    cout << "\n=== Running TEST_CASE: operator []] writing  ===\n";
-    float arr1[] = {1, 2, 3, 4};
-    SquareMatrix m1(arr1);
-    cout << m1 << endl;
+
+TEST_CASE("operator [] writing") {
+    cout << "\n=== Running TEST_CASE: operator [] writing ===\n";
+    SquareMatrix m = createMatrix();
     cout << "Set all values to 7" << endl;
-    m1[0][0] = 7;
-    m1[0][1] = 7;
-    m1[1][0] = 7;
-    m1[1][1] = 7;
-    CHECK(m1[0][0] == doctest::Approx(7));
-    CHECK(m1[0][1] == doctest::Approx(7));
-    CHECK(m1[1][0] == doctest::Approx(7));
-    CHECK(m1[1][1] == doctest::Approx(7));
-    cout << m1 << endl;
+
+    for (int i = 0; i < m.getDimension(); ++i) {
+        for (int j = 0; j < m.getDimension(); ++j) {
+            m[i][j] = 7;
+        }
+    }
+
+    for (int i = 0; i < m.getDimension(); ++i) {
+        for (int j = 0; j < m.getDimension(); ++j) {
+            CHECK(m[i][j] == doctest::Approx(7));
+        }
+    }
+
+    cout << m << endl;
     cout << "\n========================================\n";
 }
-TEST_CASE("operator []] reading") {
-    cout << "\n=== Running TEST_CASE: operator []] reading  ===\n";
-    float arr1[] = {1, 2, 3, 4};
-    SquareMatrix m1(arr1);
-    int a = m1[0][0];
-    int b = m1[0][1];
-    int c = m1[1][0];
-    int d = m1[1][1];
-    CHECK(a == 1);
-    CHECK(b == 2);
-    CHECK(c == 3);
-    CHECK(d == 4);
+
+
+TEST_CASE("operator [] reading") {
+    cout << "\n=== Running TEST_CASE: operator [] reading ===\n";
+    SquareMatrix m = createMatrix();
+
+    for (int i = 0; i < m.getDimension(); ++i) {
+        for (int j = 0; j < m.getDimension(); ++j) {
+            float expected = i * m.getDimension() + j + 1;
+            CHECK(m[i][j] == doctest::Approx(expected));
+        }
+    }
+
     cout << "\n========================================\n";
 }
