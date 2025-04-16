@@ -7,26 +7,31 @@ using namespace Matrix;
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "doctest.h"
 
+
+TEST_CASE("Invalid array") {
+    cout << "\n=== Running TEST_CASE: Invalid array ===\n";
+    float arr1[] = {1,2,3,4,5};
+    cout << "Array: ";
+    for (int i = 0; i < 5;i++) {
+        cout << arr1[i] << " ";
+    }
+    CHECK_THROWS_AS(SquareMatrix m1(arr1),invalid_argument);
+    cout << "\n========================================\n";
+}
+
 TEST_CASE("operator +") {
-    float data1[] = {1, 2, 3, 4};
-    float data2[] = {4, 3, 2, 1};
-
-    SquareMatrix m1(data1, 2);
-    SquareMatrix m2(data2, 2);
-
+    cout << "\n=== Running TEST_CASE: operator + ===\n";
+    float arr1[] = {1, 2, 3, 4};
+    float arr2[] = {4, 3, 2, 1};
+    SquareMatrix m1(arr1);
+    SquareMatrix m2(arr2);
     cout << m1 << endl;
-
     cout << m2 << endl;
-
-
     SquareMatrix result = m1 + m2;
-
     cout << result << endl;
-
     CHECK(result[0][0] == doctest::Approx(5));
     CHECK(result[0][1] == doctest::Approx(5));
     CHECK(result[1][0] == doctest::Approx(5));
     CHECK(result[1][1] == doctest::Approx(5));
-
+    cout << "\n========================================\n";
 }
-

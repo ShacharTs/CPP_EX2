@@ -8,16 +8,6 @@ using namespace std;
 
 
 namespace Matrix {
-    SquareMatrix::SquareMatrix(const float sqMatrix[], int dimensionSize) : dimensionSize(dimensionSize) {
-        if (sqMatrix == nullptr) {
-            throw invalid_argument("Matrix array can not be null");
-        }
-        matrix = new float[dimensionSize * dimensionSize];
-        for (int i = 0; i < dimensionSize * dimensionSize; i++) {
-            matrix[i] = sqMatrix[i];
-        }
-    }
-
     /**
      * a private helper constructor for all the operators
      * @param dimensionSize .
@@ -70,6 +60,17 @@ namespace Matrix {
     }
 
 
+        /**
+         * =============================================================================
+         *                              Operator Behavior Note
+         * -----------------------------------------------------------------------------
+         *          All the operators work in the same way:
+         *          this->matrix   => the left-hand side argument (lhs)
+         *          other.matrix   => the right-hand side argument (rhs)
+         * -----------------------------------------------------------------------------
+         */
+
+
     /**
      * Printing the matrix
      * @return
@@ -85,25 +86,13 @@ namespace Matrix {
         return out;
     }
 
-    /**
-     * =============================================================================
-     *                              Operator Behavior Note
-     * -----------------------------------------------------------------------------
-     *          All the operators work in the same way:
-     *          this->matrix   => the left-hand side argument (lhs)
-     *          other.matrix   => the right-hand side argument (rhs)
-     * -----------------------------------------------------------------------------
-     */
-
-
-    float* SquareMatrix::operator[](int row) {
+    float *SquareMatrix::operator[](int row) {
         return &matrix[row * dimensionSize];
     }
 
-    const float* SquareMatrix::operator[](int row) const {
+    const float *SquareMatrix::operator[](int row) const {
         return &matrix[row * dimensionSize];
     }
-
 
 
     SquareMatrix SquareMatrix::operator+(const SquareMatrix &other) const {
