@@ -127,3 +127,17 @@ TEST_CASE("operator []] writing") {
     cout << m1 << endl;
     cout << "\n========================================\n";
 }
+TEST_CASE("operator []] reading") {
+    cout << "\n=== Running TEST_CASE: operator []] reading  ===\n";
+    float arr1[] = {1, 2, 3, 4};
+    SquareMatrix m1(arr1);
+    int a = m1[0][0];
+    int b = m1[0][1];
+    int c = m1[1][0];
+    int d = m1[1][1];
+    CHECK(a == 1);
+    CHECK(b == 2);
+    CHECK(c == 3);
+    CHECK(d == 4);
+    cout << "\n========================================\n";
+}
