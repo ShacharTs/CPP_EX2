@@ -39,38 +39,27 @@ namespace Matrix {
 
         // Basic arithmetic operators
         SquareMatrix operator+(const SquareMatrix &other) const;
-
         SquareMatrix operator-(const SquareMatrix &other) const;
-
-        SquareMatrix operator-() const; // Unary minus
+        SquareMatrix operator-(); // Unary minus
         SquareMatrix operator*(const SquareMatrix &other) const;
-
         SquareMatrix operator%(const SquareMatrix &other) const; // element-wise
 
         // Scalar operations
         SquareMatrix operator*(double scalar) const;
-
         SquareMatrix operator%(int mod) const;
-
         SquareMatrix operator/(int scalar) const;
-
         SquareMatrix operator^(int power) const;
+
+
 
         // Compound assignment
         SquareMatrix &operator+=(const SquareMatrix &other);
-
         SquareMatrix &operator-=(const SquareMatrix &other);
-
         SquareMatrix &operator*=(const SquareMatrix &other);
-
         SquareMatrix &operator/=(const SquareMatrix &other);
-
         SquareMatrix &operator%=(const SquareMatrix &other);
-
         SquareMatrix &operator*=(double scalar);
-
         SquareMatrix &operator%=(int mod);
-
         SquareMatrix &operator/=(int scalar);
 
         // Increment / Decrement
@@ -92,15 +81,10 @@ namespace Matrix {
 
         // Comparisons (based on sum of elements)
         bool operator==(const SquareMatrix &other) const;
-
         bool operator!=(const SquareMatrix &other) const;
-
         bool operator<(const SquareMatrix &other) const;
-
         bool operator<=(const SquareMatrix &other) const;
-
         bool operator>(const SquareMatrix &other) const;
-
         bool operator>=(const SquareMatrix &other) const;
 
         // Friend functions

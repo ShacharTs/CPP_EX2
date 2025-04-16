@@ -113,4 +113,12 @@ namespace Matrix {
         }
         return temp;
     }
+
+    SquareMatrix SquareMatrix::operator-(){
+        for (int i = 0; i < this->dimensionSize * this->dimensionSize; i++) {
+            this->matrix[i] = this->matrix[i] * (-1);
+        }
+        return *this;
+    }
+
 }

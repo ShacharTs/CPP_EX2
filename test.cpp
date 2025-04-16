@@ -45,10 +45,7 @@ TEST_CASE("operator +") {
     float arr2[] = {4, 3, 2, 1};
     SquareMatrix m1(arr1);
     SquareMatrix m2(arr2);
-    cout << m1 << endl;
-    cout << m2 << endl;
     SquareMatrix result = m1 + m2;
-    cout << result << endl;
     CHECK(result[0][0] == doctest::Approx(5));
     CHECK(result[0][1] == doctest::Approx(5));
     CHECK(result[1][0] == doctest::Approx(5));
@@ -62,13 +59,22 @@ TEST_CASE("operator -") {
     float arr2[] = {4, 3, 2, 1};
     SquareMatrix m1(arr1);
     SquareMatrix m2(arr2);
-    cout << m1 << endl;
-    cout << m2 << endl;
     SquareMatrix result = m1 - m2;
-    cout << result << endl;
     CHECK(result[0][0] == doctest::Approx(-3));
     CHECK(result[0][1] == doctest::Approx(-1));
     CHECK(result[1][0] == doctest::Approx(1));
     CHECK(result[1][1] == doctest::Approx(3));
+    cout << "\n========================================\n";
+}
+TEST_CASE("operator - (Unary numeral)") {
+    cout << "\n=== Running TEST_CASE: operator - (Unary numeral) ===\n";
+    float arr1[] = {1, 2, 3, 4};
+    SquareMatrix m1(arr1);
+    -m1;
+    cout << "Check operator - (Unary numeral)" << endl;
+    CHECK(m1[0][0] == doctest::Approx(-1));
+    CHECK(m1[0][1] == doctest::Approx(-2));
+    CHECK(m1[1][0] == doctest::Approx(-3));
+    CHECK(m1[1][1] == doctest::Approx(-4));
     cout << "\n========================================\n";
 }
