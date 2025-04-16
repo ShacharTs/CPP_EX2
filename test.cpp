@@ -78,7 +78,6 @@ TEST_CASE("operator -") {
 }
 
 
-
 TEST_CASE("operator - (Unary numeral)") {
     cout << "\n=== Running TEST_CASE: operator - (Unary numeral) ===\n";
     SquareMatrix m1 = createMatrix();
@@ -116,7 +115,7 @@ TEST_CASE("operator *") {
     float expected[9] = {
         30, 24, 18,
         84, 69, 54,
-        138,114, 90
+        138, 114, 90
     };
 
     for (int i = 0; i < 9; ++i) {
@@ -186,8 +185,8 @@ TEST_CASE("operator = (copy constractor) ") {
     SquareMatrix m = createMatrix();
     SquareMatrix b = m;
 
-    for (int i = 0; i < m.getDimension();i++) {
-        for (int j = 0; j < m.getDimension();j++) {
+    for (int i = 0; i < m.getDimension(); i++) {
+        for (int j = 0; j < m.getDimension(); j++) {
             float mVal = m[i][j];
             CHECK(b[i][j] == doctest::Approx(mVal));
         }
@@ -200,9 +199,9 @@ TEST_CASE("operator = (copy constractor) ") {
 TEST_CASE("operator * (scalar) ") {
     cout << "\n=== Running TEST_CASE: operator * (scalar)   ===\n";
     SquareMatrix m = createMatrix();
-    SquareMatrix b = m * 2 ;
-    for (int i = 0; i < m.getDimension();i++) {
-        for (int j = 0; j < m.getDimension();j++) {
+    SquareMatrix b = m * 2;
+    for (int i = 0; i < m.getDimension(); i++) {
+        for (int j = 0; j < m.getDimension(); j++) {
             float mVal = b[i][j];
             CHECK(b[i][j] == doctest::Approx(mVal));
             cout << b[i][j] << " ";
@@ -217,30 +216,31 @@ TEST_CASE("operator % (scalar) ") {
     cout << "\n=== Running TEST_CASE: operator % (scalar)   ===\n";
     SquareMatrix m = createMatrix();
     int mod = 3;
-    SquareMatrix b = m % mod ;
-    for (int i = 0; i < m.getDimension();i++) {
-        for (int j = 0; j < m.getDimension();j++) {
+    SquareMatrix b = m % mod;
+    for (int i = 0; i < m.getDimension(); i++) {
+        for (int j = 0; j < m.getDimension(); j++) {
             int temp = b[i][j];
             int mVal = temp % mod;
             CHECK(b[i][j] == doctest::Approx(mVal));
-            cout << b[i][j] << " " ;
+            cout << b[i][j] << " ";
         }
     }
 
 
     cout << "\n========================================\n";
 }
+
 TEST_CASE("operator / (scalar) ") {
     cout << "\n=== Running TEST_CASE: operator / (scalar)   ===\n";
     SquareMatrix m = createMatrix();
     int div = 3;
-    SquareMatrix b = (m / div) ;
-    for (int i = 0; i < m.getDimension();i++) {
-        for (int j = 0; j < m.getDimension();j++) {
+    SquareMatrix b = (m / div);
+    for (int i = 0; i < m.getDimension(); i++) {
+        for (int j = 0; j < m.getDimension(); j++) {
             float temp = m[i][j];
             float mVal = temp / div;
             CHECK(b[i][j] == doctest::Approx(mVal));
-            cout << b[i][j] << " " ;
+            cout << b[i][j] << " ";
         }
     }
 
@@ -252,12 +252,12 @@ TEST_CASE("operator ^ (scalar) ") {
     cout << "\n=== Running TEST_CASE: operator ^ (scalar)   ===\n";
     SquareMatrix m = createMatrix();
     int power = 3;
-    SquareMatrix b = (m ^ power) ;
+    SquareMatrix b = (m ^ power);
     SquareMatrix manual = m * m * m;
-    for (int i = 0; i < m.getDimension();i++) {
-        for (int j = 0; j < m.getDimension();j++) {
+    for (int i = 0; i < m.getDimension(); i++) {
+        for (int j = 0; j < m.getDimension(); j++) {
             CHECK(b[i][j] == doctest::Approx(manual[i][j]));
-            cout << b[i][j] << " " ;
+            cout << b[i][j] << " ";
         }
     }
 
@@ -269,26 +269,27 @@ TEST_CASE("operator += ") {
     cout << "\n=== Running TEST_CASE: operator +=   ===\n";
     SquareMatrix m = createMatrix();
     SquareMatrix b = createMatrix();
-    m+=b;
-    for (int i = 0; i < m.getDimension();i++) {
-        for (int j = 0; j < m.getDimension();j++) {
+    m += b;
+    for (int i = 0; i < m.getDimension(); i++) {
+        for (int j = 0; j < m.getDimension(); j++) {
             CHECK(m[i][j] == doctest::Approx(b[i][j] + b[i][j]));
-            cout << m[i][j] << " " ;
+            cout << m[i][j] << " ";
         }
     }
 
 
     cout << "\n========================================\n";
 }
+
 TEST_CASE("operator -= ") {
     cout << "\n=== Running TEST_CASE: operator -=   ===\n";
     SquareMatrix m = createMatrix();
     SquareMatrix b = createMatrix();
-    m-=b;
-    for (int i = 0; i < m.getDimension();i++) {
-        for (int j = 0; j < m.getDimension();j++) {
+    m -= b;
+    for (int i = 0; i < m.getDimension(); i++) {
+        for (int j = 0; j < m.getDimension(); j++) {
             CHECK(m[i][j] == doctest::Approx(0));
-            cout << m[i][j] << " " ;
+            cout << m[i][j] << " ";
         }
     }
 
@@ -301,26 +302,27 @@ TEST_CASE("operator *= ") {
     SquareMatrix m = createMatrix();
     SquareMatrix b = createMatrix();
     SquareMatrix manual = m * b;
-    m*=b;
-    for (int i = 0; i < m.getDimension();i++) {
-        for (int j = 0; j < m.getDimension();j++) {
+    m *= b;
+    for (int i = 0; i < m.getDimension(); i++) {
+        for (int j = 0; j < m.getDimension(); j++) {
             CHECK(m[i][j] == doctest::Approx(manual[i][j]));
-            cout << m[i][j] << " " ;
+            cout << m[i][j] << " ";
         }
     }
 
 
     cout << "\n========================================\n";
 }
+
 TEST_CASE("operator *= (scalar) ") {
     cout << "\n=== Running TEST_CASE: operator *= (scalar)   ===\n";
     SquareMatrix m = createMatrix();
     SquareMatrix manual = m * 5;
-    m*=5;
-    for (int i = 0; i < m.getDimension();i++) {
-        for (int j =0 ; j<m.getDimension();j++) {
+    m *= 5;
+    for (int i = 0; i < m.getDimension(); i++) {
+        for (int j = 0; j < m.getDimension(); j++) {
             CHECK(m[i][j] == doctest::Approx(manual[i][j]));
-            cout << m[i][j] << " " ;
+            cout << m[i][j] << " ";
         }
     }
 
@@ -332,11 +334,11 @@ TEST_CASE("operator /= (scalar) ") {
     cout << "\n=== Running TEST_CASE: operator /= (scalar)   ===\n";
     SquareMatrix m = createMatrix();
     SquareMatrix manual = m / 5;
-    m/=5;
-    for (int i = 0; i < m.getDimension();i++) {
-        for (int j =0 ; j<m.getDimension();j++) {
+    m /= 5;
+    for (int i = 0; i < m.getDimension(); i++) {
+        for (int j = 0; j < m.getDimension(); j++) {
             CHECK(m[i][j] == doctest::Approx(manual[i][j]));
-            cout << m[i][j] << " " ;
+            cout << m[i][j] << " ";
         }
     }
 
@@ -344,35 +346,75 @@ TEST_CASE("operator /= (scalar) ") {
     cout << "\n========================================\n";
 }
 
+TEST_CASE("operator %= (matrix element-wise)") {
+    cout << "\n=== Running TEST_CASE: operator %= (matrix) ===\n";
+
+    SquareMatrix m1 = createMatrix(); // 1 to 9
+    SquareMatrix m2 = createMatrix(2); // 2 to 10
+
+    SquareMatrix expected = m1 % m2; // manual result
+
+    m1 %= m2;
+
+    for (int i = 0; i < m1.getDimension(); i++) {
+        for (int j = 0; j < m1.getDimension(); j++) {
+            CHECK(m1[i][j] == doctest::Approx(expected[i][j]));
+            cout << m1[i][j] << " ";
+        }
+    }
+
+    cout << "\n========================================\n";
+}
+
+
+TEST_CASE("operator %= (scalar)") {
+    cout << "\n=== Running TEST_CASE: operator %= (scalar) ===\n";
+
+    SquareMatrix m = createMatrix();
+    SquareMatrix manual = m % 5;
+
+    m %= 5;
+
+    for (int i = 0; i < m.getDimension(); i++) {
+        for (int j = 0; j < m.getDimension(); j++) {
+            CHECK(m[i][j] == doctest::Approx(manual[i][j]));
+            cout << m[i][j] << " ";
+        }
+    }
+
+    cout << "\n========================================\n";
+}
+
+
 TEST_CASE("operator == ") {
     cout << "\n=== Running TEST_CASE: operator == ===\n";
-    SquareMatrix a = createMatrix();   // sum = 45
-    SquareMatrix b = createMatrix();   // same
+    SquareMatrix a = createMatrix(); // sum = 45
+    SquareMatrix b = createMatrix(); // same
     CHECK(a == b);
     cout << "========================================\n";
 }
 
 TEST_CASE("operator != ") {
     cout << "\n=== Running TEST_CASE: operator != ===\n";
-    SquareMatrix a = createMatrix();         // sum = 45
-    SquareMatrix b = createMatrix(10);       // 10 to 18  sum = 126
+    SquareMatrix a = createMatrix(); // sum = 45
+    SquareMatrix b = createMatrix(10); // 10 to 18  sum = 126
     CHECK(a != b);
     cout << "========================================\n";
 }
 
 TEST_CASE("operator < ") {
     cout << "\n=== Running TEST_CASE: operator < ===\n";
-    SquareMatrix a = createMatrix();         // sum = 45
-    SquareMatrix b = createMatrix(10);       // sum = 126
+    SquareMatrix a = createMatrix(); // sum = 45
+    SquareMatrix b = createMatrix(10); // sum = 126
     CHECK(a < b);
     cout << "========================================\n";
 }
 
 TEST_CASE("operator <= ") {
     cout << "\n=== Running TEST_CASE: operator <= ===\n";
-    SquareMatrix a = createMatrix();         // sum = 45
-    SquareMatrix b = createMatrix();         // sum = 45
-    SquareMatrix c = createMatrix(10);       // sum = 126
+    SquareMatrix a = createMatrix(); // sum = 45
+    SquareMatrix b = createMatrix(); // sum = 45
+    SquareMatrix c = createMatrix(10); // sum = 126
     CHECK(a <= b);
     CHECK(a <= c);
     cout << "========================================\n";
@@ -380,20 +422,18 @@ TEST_CASE("operator <= ") {
 
 TEST_CASE("operator > ") {
     cout << "\n=== Running TEST_CASE: operator > ===\n";
-    SquareMatrix a = createMatrix(10);       // sum = 126
-    SquareMatrix b = createMatrix();         // sum = 45
+    SquareMatrix a = createMatrix(10); // sum = 126
+    SquareMatrix b = createMatrix(); // sum = 45
     CHECK(a > b);
     cout << "========================================\n";
 }
 
 TEST_CASE("operator >= ") {
     cout << "\n=== Running TEST_CASE: operator >= ===\n";
-    SquareMatrix a = createMatrix();         // sum = 45
-    SquareMatrix b = createMatrix();         // sum = 45
-    SquareMatrix c = createMatrix(2);        // sum > 45
+    SquareMatrix a = createMatrix(); // sum = 45
+    SquareMatrix b = createMatrix(); // sum = 45
+    SquareMatrix c = createMatrix(2); // sum > 45
     CHECK(a >= b);
     CHECK(c >= a);
     cout << "========================================\n";
 }
-
-

@@ -1,9 +1,4 @@
 
-
-        // Compound assignment
-        SquareMatrix &operator%=(const SquareMatrix &other);
-        SquareMatrix &operator%=(int mod);
-
         // Increment / Decrement
         // Prefix -> do it and then update
         // Postfix -> update and then do it

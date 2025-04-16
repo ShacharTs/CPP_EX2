@@ -241,6 +241,19 @@ namespace Matrix {
         return *this;
     }
 
+    SquareMatrix &SquareMatrix::operator%=(const SquareMatrix &other) {
+        checkdimensionSize(other);
+        for (int i = 0; i < getSize(); i++) {
+            this->matrix[i] *= other.matrix[i];
+        }
+        return *this;
+    }
+
+    SquareMatrix &SquareMatrix::operator%=(const int mod) {
+        *this = *this % mod;
+        return *this;
+    }
+
 
 
     bool SquareMatrix::operator==(const SquareMatrix &other) const {
