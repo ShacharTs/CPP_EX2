@@ -22,13 +22,16 @@ namespace Matrix {
      * @return
      */
     void SquareMatrix::checkdimensionSize(const SquareMatrix &other) const {
-        if (this->dimensionSize != other.dimensionSize) {
+        if (this->getDim() != other.getDim()) {
             throw invalid_argument("Matrix dimension size must be equals");
         }
     }
 
     int SquareMatrix::getSize() const {
-        return dimensionSize * dimensionSize;
+        return getDim() * getDim();
+    }
+    int SquareMatrix::getDim() const {
+        return this->dimensionSize;
     }
 
 
@@ -42,8 +45,8 @@ namespace Matrix {
     // Copy constructor
     SquareMatrix::SquareMatrix(const SquareMatrix &other)
         : dimensionSize(other.dimensionSize) {
-        matrix = new float[dimensionSize * dimensionSize];
-        for (int i = 0; i < dimensionSize * dimensionSize; ++i) {
+        matrix = new float[getSize()];
+        for (int i = 0; i < getDim() * getDim(); ++i) {
             matrix[i] = other.matrix[i];
         }
     }
@@ -55,9 +58,8 @@ namespace Matrix {
         }
         delete[] matrix;
 
-        dimensionSize = other.dimensionSize;
-        matrix = new float[dimensionSize * dimensionSize];
-        for (int i = 0; i < dimensionSize * dimensionSize; ++i) {
+        matrix = new float[other.getSize()];
+        for (int i = 0; i < other.getSize(); ++i) {
             matrix[i] = other.matrix[i];
         }
         return *this;
@@ -81,9 +83,9 @@ namespace Matrix {
      */
     std::ostream &operator<<(std::ostream &out, const SquareMatrix &mat) {
         cout << "Printing matrix" << endl;
-        for (int i = 0; i < mat.dimensionSize; ++i) {
-            for (int j = 0; j < mat.dimensionSize; ++j) {
-                out << mat.matrix[i * mat.dimensionSize + j] << " ";
+        for (int i = 0; i < mat.getDim(); ++i) {
+            for (int j = 0; j < mat.getDim(); ++j) {
+                out << mat.matrix[i * mat.getDim() + j] << " ";
             }
             out << '\n';
         }
@@ -91,18 +93,18 @@ namespace Matrix {
     }
 
     float *SquareMatrix::operator[](int row) { // writing
-        return &matrix[row * dimensionSize];
+        return &matrix[row * getDim()];
     }
 
     const float *SquareMatrix::operator[](int row) const { // reading
-        return &matrix[row * dimensionSize];
+        return &matrix[row * getDim()];
     }
 
 
     SquareMatrix SquareMatrix::operator+(const SquareMatrix &other) const {
         checkdimensionSize(other);
-        SquareMatrix temp(other.dimensionSize, true);
-        for (int i = 0; i < dimensionSize * dimensionSize; i++) {
+        SquareMatrix temp(other.getDim(), true);
+        for (int i = 0; i < getSize(); i++) {
             temp.matrix[i] = this->matrix[i] + other.matrix[i];
         }
         return temp;
@@ -111,15 +113,15 @@ namespace Matrix {
 
     SquareMatrix SquareMatrix::operator-(const SquareMatrix &other) const {
         checkdimensionSize(other);
-        SquareMatrix temp(other.dimensionSize, true);
-        for (int i = 0; i < dimensionSize * dimensionSize; i++) {
+        SquareMatrix temp(other.getDim(), true);
+        for (int i = 0; i < getSize(); i++) {
             temp.matrix[i] = this->matrix[i] - other.matrix[i];
         }
         return temp;
     }
 
     SquareMatrix SquareMatrix::operator-() {
-        for (int i = 0; i < this->dimensionSize * this->dimensionSize; i++) {
+        for (int i = 0; i < getSize(); i++) {
             this->matrix[i] = this->matrix[i] * (-1);
         }
         return *this;
@@ -127,14 +129,14 @@ namespace Matrix {
 
     SquareMatrix SquareMatrix::operator*(const SquareMatrix &other) const {
         checkdimensionSize(other);
-        SquareMatrix temp(other.dimensionSize, true);
-        for (int i = 0; i < this->dimensionSize; i++) {
-            for (int j = 0; j < dimensionSize; j++) {
+        SquareMatrix temp(other.getDim(), true);
+        for (int i = 0; i < this->getDim(); i++) {
+            for (int j = 0; j < getDim(); j++) {
                 float sum = 0;
-                for (int k = 0; k < dimensionSize; k++) {
-                    sum += this->matrix[i * dimensionSize + k] * other.matrix[k * dimensionSize + j];
+                for (int k = 0; k < getDim(); k++) {
+                    sum += this->matrix[i * getDim() + k] * other.matrix[k * getDim() + j];
                 }
-                temp.matrix[i * dimensionSize + j] = sum;;
+                temp.matrix[i * getDim() + j] = sum;;
             }
         }
         return temp;
@@ -142,7 +144,7 @@ namespace Matrix {
 
     SquareMatrix SquareMatrix::operator%(const SquareMatrix &other) const {
         checkdimensionSize(other);
-        SquareMatrix temp (other.dimensionSize,true);
+        SquareMatrix temp (other.getDim(),true);
         for (int i = 0; i < getSize();i++) {
             int tempMod = this->matrix[i] * other.matrix[i];
             temp.matrix[i] = tempMod;

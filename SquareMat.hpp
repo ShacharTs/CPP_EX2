@@ -14,6 +14,7 @@ namespace Matrix {
 
         void checkdimensionSize(const SquareMatrix &other) const;
         auto getSize() const -> int;
+        auto getDim() const -> int;
 
     public:
         // Template constructor for auto-detecting array size

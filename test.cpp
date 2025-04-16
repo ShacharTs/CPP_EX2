@@ -7,6 +7,13 @@ using namespace Matrix;
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "doctest.h"
 
+SquareMatrix createMatrix(float val = 1) {
+    float arr[9];
+    for (int i = 0; i < 9; ++i)
+        arr[i] = val + i;
+    return SquareMatrix(arr);
+}
+
 
 TEST_CASE("Invalid array") {
     cout << "\n=== Running TEST_CASE: Invalid array ===\n";
