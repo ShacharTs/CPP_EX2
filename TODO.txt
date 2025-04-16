@@ -1,17 +1,6 @@
 
-        // Increment / Decrement
-        // Prefix -> do it and then update
-        // Postfix -> update and then do it
-
-        SquareMatrix operator++(int); // Postfix ++
-
-        SquareMatrix operator--(int); // Postfix --
-
         // Transpose and determinant
         float operator!() const; // Determinant
-
-
-
 
 
         // Friend functions
