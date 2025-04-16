@@ -181,8 +181,8 @@ TEST_CASE("operator [] reading") {
     cout << "\n========================================\n";
 }
 
-TEST_CASE("operator = ") {
-    cout << "\n=== Running TEST_CASE: operator =   ===\n";
+TEST_CASE("operator = (copy constractor) ") {
+    cout << "\n=== Running TEST_CASE: operator = (copy constractor)  ===\n";
     SquareMatrix m = createMatrix();
     SquareMatrix b = m;
 
