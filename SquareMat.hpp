@@ -21,7 +21,11 @@ namespace Matrix {
         // Template constructor for auto-detecting array size
         template<size_t N>
         explicit SquareMatrix(const float (&arr)[N]) {
-            int dim = std::sqrt(N);
+            // no need to check, this can not happened because of compile
+            // if ( arr == nullptr || N == 0) {
+            //     throw std::invalid_argument("Array can not be empty");
+            // }
+            const int dim = std::sqrt(N);
             if (dim * dim != N) {
                 throw std::invalid_argument("Array size is not a perfect square.");
             }
