@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -g -Wall
+CXXFLAGS = -std=c++17 -g -Wall
 
 .PHONY: test valgrind clean
 OUTPUT = test

@@ -3,8 +3,8 @@
 
 using namespace std;
 
-
-//** To access a slot in 2d array is  matrix[i * matrix.size + j]
+// Note to myself
+// To access a slot in 2d array is matrix[i * matrix.size + j]
 
 
 namespace Matrix {
@@ -332,7 +332,7 @@ namespace Matrix {
         float* subMatrix = new float[(dim - 1) * (dim - 1)];
 
         for (int col = 0; col < dim; ++col) {
-            // Build sub-matrix excluding row 0 and column `col`
+            // Build submatrix excluding row 0 and column `col`
             int subIndex = 0;
             for (int i = 1; i < dim; ++i) {
                 for (int j = 0; j < dim; ++j) {
