@@ -1,5 +1,4 @@
 # Simple Square Matrix Library
-### Shachar Tsrafati
 
 ## Overview
 This project implements a `SquareMatrix` class in C++ for working with N×N matrices of floats. It supports: basic arithmetic, scalar operations, element-wise operations, comparison, transpose, determinant, and more.
